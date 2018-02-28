@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Move : MonoBehaviour {
     public KeyCode upKey;
@@ -13,6 +14,7 @@ public class Move : MonoBehaviour {
     public float speed = 16;
     Animator anim;
     SpriteRenderer sr;
+
     void spawnWall()
     {
         lastWallEnd = transform.position;
