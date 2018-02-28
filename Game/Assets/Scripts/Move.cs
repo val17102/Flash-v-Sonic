@@ -9,6 +9,7 @@ public class Move : MonoBehaviour {
     public KeyCode rightKey;
     public KeyCode leftKey;
     public GameObject lightwall;
+    int lr = -1;
     Collider2D wall;
     Vector2 lastWallEnd;
     public float speed = 16;
@@ -45,32 +46,50 @@ public class Move : MonoBehaviour {
         spawnWall();
         anim = GetComponent<Animator>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    //(0,1),(1,0),(0,-1),(-1,0)
+public void Rmas()
+{
+    lr++;
+    if (lr > 3)
+    {
+        lr = 0;
+    }
+}
+
+public void Rmenos()
+{
+    lr--;
+    if (lr < 0)
+    {
+        lr = 3;
+    }
+}
+// Update is called once per frame
+void Update () {
         float move = 0;
-		if (Input.GetKeyDown(upKey))
+		if (Input.GetKeyDown(upKey) || (lr == 0))
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
             spawnWall();
             move = 1;
             transform.rotation = Quaternion.Euler(0,0,0);
         }
-        else if (Input.GetKeyDown(downKey))
+        else if (Input.GetKeyDown(downKey)||(lr == 1))
         {
             GetComponent<Rigidbody2D>().velocity = -Vector2.up * speed;
             spawnWall();
             move = 1;
             transform.rotation = Quaternion.Euler(0, 0, 180);
         }
-        else if (Input.GetKeyDown(rightKey))
+        else if (Input.GetKeyDown(rightKey) || (lr == 2))
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
             spawnWall();
             move = 1;
             transform.rotation = Quaternion.Euler(0, 0, 270);
         }
-        else if (Input.GetKeyDown(leftKey))
+        else if (Input.GetKeyDown(leftKey) || (lr == 3))
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.left * speed;
             spawnWall();
