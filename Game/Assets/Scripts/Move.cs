@@ -40,14 +40,13 @@ public class Move : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    // Use this for initialization
+
     void Start () {
-        //GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
         spawnWall();
         anim = GetComponent<Animator>();
     }
 
-    //(0,1),(1,0),(0,-1),(-1,0)
+
 public void Rmas()
 {
     lr++;
@@ -55,7 +54,32 @@ public void Rmas()
     {
         lr = 0;
     }
-}
+
+        if (Input.GetKeyDown(upKey) || (lr == 0))
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
+            spawnWall();
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (Input.GetKeyDown(downKey) || (lr == 2))
+        {
+            GetComponent<Rigidbody2D>().velocity = -Vector2.up * speed;
+            spawnWall();
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (Input.GetKeyDown(rightKey) || (lr == 1))
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+            spawnWall();
+            transform.rotation = Quaternion.Euler(0, 0, 270);
+        }
+        else if (Input.GetKeyDown(leftKey) || (lr == 3))
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.left * speed;
+            spawnWall();
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+    }
 
 public void Rmenos()
 {
@@ -64,38 +88,35 @@ public void Rmenos()
     {
         lr = 3;
     }
-}
-// Update is called once per frame
-void Update () {
-        float move = 0;
-		if (Input.GetKeyDown(upKey) || (lr == 0))
+
+        if (Input.GetKeyDown(upKey) || (lr == 0))
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
             spawnWall();
-            move = 1;
-            transform.rotation = Quaternion.Euler(0,0,0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (Input.GetKeyDown(downKey)||(lr == 1))
+        else if (Input.GetKeyDown(downKey) || (lr == 2))
         {
             GetComponent<Rigidbody2D>().velocity = -Vector2.up * speed;
             spawnWall();
-            move = 1;
             transform.rotation = Quaternion.Euler(0, 0, 180);
         }
-        else if (Input.GetKeyDown(rightKey) || (lr == 2))
+        else if (Input.GetKeyDown(rightKey) || (lr == 1))
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
             spawnWall();
-            move = 1;
             transform.rotation = Quaternion.Euler(0, 0, 270);
         }
         else if (Input.GetKeyDown(leftKey) || (lr == 3))
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.left * speed;
             spawnWall();
-            move = 1;
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
+    }
+// Update is called once per frame
+void Update () {
+        
 
         if(transform.position.x > 64.1)
         {
@@ -114,7 +135,6 @@ void Update () {
             Destroy(gameObject);
         }
         fitColliderBetween(wall, lastWallEnd, transform.position);
-        anim.SetFloat("Speed", Mathf.Abs(move));
         anim.Play("Run");
         anim.Play("SonicRunning");
     }
