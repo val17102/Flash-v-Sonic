@@ -118,19 +118,19 @@ public void Rmenos()
 void Update () {
         
 
-        if(transform.position.x > 64.1)
+        if(transform.position.x > 122)
         {
             Destroy(gameObject);
         }
-        if (transform.position.x < -64.1)
+        if (transform.position.x < -122)
         {
             Destroy(gameObject);
         }
-        if (transform.position.y > 64.1)
+        if (transform.position.y > 77)
         {
             Destroy(gameObject);
         }
-        if (transform.position.y < -64.1)
+        if (transform.position.y < -77)
         {
             Destroy(gameObject);
         }
