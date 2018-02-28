@@ -116,9 +116,32 @@ public void Rmenos()
     }
 // Update is called once per frame
 void Update () {
-        
 
-        if(transform.position.x > 64.1)
+        if (Input.GetKeyDown(upKey))
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
+            spawnWall();
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (Input.GetKeyDown(downKey))
+        {
+            GetComponent<Rigidbody2D>().velocity = -Vector2.up * speed;
+            spawnWall();
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (Input.GetKeyDown(rightKey))
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+            spawnWall();
+            transform.rotation = Quaternion.Euler(0, 0, 270);
+        }
+        else if (Input.GetKeyDown(leftKey))
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.left * speed;
+            spawnWall();
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        if (transform.position.x > 64.1)
         {
             Destroy(gameObject);
         }
